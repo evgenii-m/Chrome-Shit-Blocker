@@ -1,0 +1,21 @@
+body {
+	width: 500px;
+}
+
+.key-word-input-block {
+	margin: 10px;
+	font-size: 10pt;
+}
+
+.key-word-input-block input {
+	margin-left: 5px;
+	width: 300px;
+}
+
+.dictionary-block {
+	margin: 10px;
+}
+
+button {
+	margin: 10px 5px;
+}

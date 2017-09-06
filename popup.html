@@ -1,14 +1,15 @@
 <html>
 	<head>
+	 	<meta charset="UTF-8"> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="popup.js"></script>
+		<link rel="stylesheet" href="styles.css"/>
 	</head>
-	
-	<body style="width: 400px">
-		<div>Search Bookmarks: <input id="search"></div>
-		<div id="bookmarks"></div>
-		<div id="editdialog"></div>
-		<div id="deletedialog"></div>
-		<div id="adddialog"></div>
+
+	<body>
+		<div class="key-word-input-block">Add key word: <input id="keyWordInput"></div>
+		<div class="dictionary-block" id="dictionary"></div>
+		<button id="applyButton">Apply</button>
+		<button id="offButton">Off</button>
 	</body>
 </html>

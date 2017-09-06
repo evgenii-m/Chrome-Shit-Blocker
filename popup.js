@@ -119,6 +119,19 @@ function dumpNode(bookmarkNode, query) {
   return li;
 }
 
+function addKeyToDictionary(key) {
+
+}
+
+
+$("#applyButton").onClick(function() {
+
+});
+
+$("#offButton").onClick(function()) {
+  
+}
+  
 document.addEventListener('DOMContentLoaded', function () {
   dumpBookmarks();
 });
