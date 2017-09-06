@@ -1,0 +1,19 @@
+{
+	"manifest_version": 2,
+	"name": "Youtube Shit Blocker",
+	"version": "1.0.0",
+	"description": "Расширение для Youtube, чтобы блокировать всякое дерьмо по ключевым словам.",
+	"short_name": "YoutubeSB",
+  
+	"permissions": [
+		"tabs",
+		"activeTab"
+	],
+
+	"browser_action": {
+		"default_title": "Youtube Shit Blocker Settings",
+		"default_icon": "icon.png",
+		"default_popup": "popup.html"
+	},
+	"content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'"
+}
