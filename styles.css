@@ -1,5 +1,5 @@
 body {
-	width: 500px;
+	width: 450px;
 }
 
 .key-word-input-block {
@@ -9,7 +9,7 @@ body {
 
 .key-word-input-block input {
 	margin-left: 5px;
-	width: 300px;
+	width: 280px;
 }
 
 .dictionary-block {
