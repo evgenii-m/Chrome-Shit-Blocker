@@ -2,20 +2,42 @@ body {
 	width: 450px;
 }
 
-.key-word-input-block {
+.keyword-input-block {
 	margin: 10px;
 	font-size: 10pt;
 }
 
-.key-word-input-block input {
+.keyword-input-block input {
 	margin-left: 5px;
 	width: 280px;
 }
 
 .dictionary-block {
 	margin: 10px;
+	list-style-type: none;
+	padding: 0px;
+	height: 320px;
+	overflow-y: auto;
 }
 
-button {
+.dictionary-item {
+	display: inline-block;
+	margin: 3px 0px;
+	border-bottom: 1px solid #555;
+	padding: 2px;
+}
+
+.dictionary-item-text {
+	min-width: 370px;
+	float: left;
+	margin-top: 3px;
+}
+
+.dictionary-item-remove-button {
+	width: 25px;
+	margin: 0px 5px;
+}
+
+.buttons-block button {
 	margin: 10px 5px;
 }
