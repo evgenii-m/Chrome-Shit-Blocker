@@ -65,6 +65,18 @@ function fillDictionaryBlock() {
   });
 }
 
+function hideElementsByKeywords() {
+  chrome.storage.sync.get({'dictionary': []}, function (result) {
+
+    chrome.tabs.query({'url': 'https://www.youtube.com/*'}, function(tabs) {
+        for (var tab in tabs) {
+            chrome.tabs.executeScript(tab.id, { file: "filterContent.js" });
+        }
+    });
+
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
   fillDictionaryBlock();
@@ -76,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   $("#applyButton").click(function() {
+    hideElementsByKeywords();
   });
 
   $("#offButton").click(function() {
