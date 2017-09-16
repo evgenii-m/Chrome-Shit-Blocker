@@ -1,9 +1,20 @@
-var filteredElements = $("ytd-grid-video-renderer");
-
-console.log(filteredElements.length);
 
 chrome.storage.sync.get({'dictionary': []}, function (result) {  
-  for (var keyword in result.dictionary) {
-    console.log(keyword);
+  var elementsTitleMap = {};
+
+  $("ytd-grid-video-renderer").each(function(i, e) {
+    var videoTitle = $("a#video-title", e).text();
+    elementsTitleMap[videoTitle] = e;
+  });
+
+  for (var keywordId in result.dictionary) {
+    var keyword = result.dictionary[keywordId];
+    for (var t in elementsTitleMap) {
+      if (t.indexOf(keyword) != -1) {
+        var element = elementsTitleMap[t];
+        element.style.display = 'none';
+        console.log(t);
+      }
+    }
   }
 });
