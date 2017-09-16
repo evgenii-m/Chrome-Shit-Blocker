@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 $(window).scroll(function() {
   var currentDocumentHeight = $(document).height();
-  if (currentDocumentHeight != documentHeight) {
+  if (currentDocumentHeight > documentHeight) {
     documentHeight = currentDocumentHeight;
     performFiltering();    
   }
@@ -19,12 +19,10 @@ function performFiltering() {
 
     var elementsMap = {};
 
-    $("ytd-grid-video-renderer").each(function(i, e) {
-      var videoTitle = $("a#video-title", e).text();
+    $("ytd-video-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer").each(function(i, e) {
+      var videoTitle = $("a#video-title,span#video-title", e).text();
       elementsMap[videoTitle] = e;
     });
-
-    var i = 0;
 
     for (var t in elementsMap) {
       var element = elementsMap[t];

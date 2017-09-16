@@ -74,6 +74,24 @@ function performFiltering() {
   });
 }
 
+function cancelFilters() {
+  chrome.tabs.query({'url': 'https://www.youtube.com/*'}, function(tabs) {
+    for (var tab in tabs) {
+        chrome.tabs.executeScript(tab.id, { file: "cancelFilters.js" });
+    }
+  });  
+}
+
+function clearDictionary() {
+  var result = confirm("Вы уверены что хотите очистить словарь?");
+  if (result) {
+    chrome.storage.sync.clear(function() {
+      $("#dictionary").empty();
+    });
+    cancelFilters();
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
   fillDictionaryBlock();
@@ -92,12 +110,11 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   $("#offButton").click(function() {
+    cancelFilters();
   });
 
   $("#clearButton").click(function() {
-    chrome.storage.sync.clear(function() {
-      $("#dictionary").empty();
-    });
+    clearDictionary();
   });
 
 });
