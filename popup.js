@@ -18,18 +18,6 @@ function addKeywordToDictionary(keyword) {
   });
 }
 
-function removeKeywordFromDictionary(id) {
-  chrome.storage.sync.get({'dictionary': {}}, function (result) {
-    var dictionary = result.dictionary;
-    var keyword = dictionary[id];
-    delete dictionary[id];
-    chrome.storage.sync.set({'dictionary': dictionary}, function() {
-        console.log('Keyword [' + keyword + '] removed from dictionary.');
-        removeKeywordFromDictionaryBlock(id);
-    });
-  });
-}
-
 function appendKeywordToDictionaryBlock(keyword, id) {
   var item = $("<li/>", {
     id: id,
@@ -49,6 +37,19 @@ function appendKeywordToDictionaryBlock(keyword, id) {
   removeButton.click(function() {
     var keywordId = $(this).parent().attr('id');
     removeKeywordFromDictionary(keywordId);
+    performFiltering();
+  });
+}
+
+function removeKeywordFromDictionary(id) {
+  chrome.storage.sync.get({'dictionary': {}}, function (result) {
+    var dictionary = result.dictionary;
+    var keyword = dictionary[id];
+    delete dictionary[id];
+    chrome.storage.sync.set({'dictionary': dictionary}, function() {
+        console.log('Keyword [' + keyword + '] removed from dictionary.');
+        removeKeywordFromDictionaryBlock(id);
+    });
   });
 }
 
@@ -66,10 +67,10 @@ function fillDictionaryBlock() {
 }
 
 function performFiltering() {
-  chrome.tabs.executeScript({ file: "filterContent.js" }, function() {
-    if (chrome.runtime.lastError) {
-      console.log("ERROR: " + chrome.runtime.lastError.message);
-    } 
+  chrome.tabs.query({'url': 'https://www.youtube.com/*'}, function(tabs) {
+    for (var tab in tabs) {
+        chrome.tabs.executeScript(tab.id, { file: "filterContent.js" });
+    }
   });
 }
 

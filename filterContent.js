@@ -17,22 +17,26 @@ function performFiltering() {
   chrome.storage.sync.get({'dictionary': []}, function (result) {  
     console.log("Start filter content!");
 
-    var elementsTitleMap = {};
+    var elementsMap = {};
 
     $("ytd-grid-video-renderer").each(function(i, e) {
       var videoTitle = $("a#video-title", e).text();
-      elementsTitleMap[videoTitle] = e;
+      elementsMap[videoTitle] = e;
     });
 
-    for (var keywordId in result.dictionary) {
-      var keyword = result.dictionary[keywordId];
-      for (var t in elementsTitleMap) {
+    var i = 0;
+
+    for (var t in elementsMap) {
+      var element = elementsMap[t];
+      element.style.display = 'inline-block';
+      for (var keywordId in result.dictionary) {
+        var keyword = result.dictionary[keywordId];
         if (t.indexOf(keyword) != -1) {
-          var element = elementsTitleMap[t];
           element.style.display = 'none';
-          console.log(t);
+          console.log("Filtered: " + t);
         }
       }
     }
+
   });
 }
