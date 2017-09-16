@@ -1,5 +1,7 @@
 
 chrome.storage.sync.get({'dictionary': []}, function (result) {  
+  console.log("Start filter content!");
+
   var elementsTitleMap = {};
 
   $("ytd-grid-video-renderer").each(function(i, e) {
