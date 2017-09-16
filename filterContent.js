@@ -2,18 +2,18 @@ var documentHeight;
 
 $(document).ready(function() {
   documentHeight = $(document).height();
-  applyFilter();
+  performFiltering();
 }); 
 
 $(window).scroll(function() {
   var currentDocumentHeight = $(document).height();
   if (currentDocumentHeight != documentHeight) {
     documentHeight = currentDocumentHeight;
-    applyFilter();    
+    performFiltering();    
   }
 });
 
-function applyFilter() {
+function performFiltering() {
   chrome.storage.sync.get({'dictionary': []}, function (result) {  
     console.log("Start filter content!");
 
