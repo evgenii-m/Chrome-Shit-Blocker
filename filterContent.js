@@ -3,7 +3,10 @@ var documentHeight;
 $(document).ready(function() {
   documentHeight = $(document).height();
   performFiltering();
-}); 
+  // на странице просмотра видео блок "Up next" появляется с задержкой, прицепиться к событиям добавления элементов не удалось, поэтому так...
+  window.setTimeout(performFiltering, 1000); 
+});
+
 
 $(window).scroll(function() {
   var currentDocumentHeight = $(document).height();
