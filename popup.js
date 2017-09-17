@@ -83,7 +83,7 @@ function cancelFilters() {
 }
 
 function clearDictionary() {
-  var result = confirm("Вы уверены что хотите очистить словарь?");
+  var result = confirm("Are you sure you want to clear the dictionary?");
   if (result) {
     chrome.storage.sync.clear(function() {
       $("#dictionary").empty();

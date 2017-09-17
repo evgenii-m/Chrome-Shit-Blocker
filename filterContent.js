@@ -32,7 +32,18 @@ function performFiltering() {
       element.style.display = 'inline-block';
       for (var keywordId in result.dictionary) {
         var keyword = result.dictionary[keywordId];
-        if (t.indexOf(keyword) != -1) {
+        var keywordParts = keyword.split("///", 2);
+
+        var keywordRegExp;
+        if ((keywordParts == null) || (keywordParts.length == 0))
+          keywordRegExp = new RegExp(keyword, "");
+        else if (keywordParts.length == 1)
+          keywordRegExp = new RegExp(keywordParts[0], "");
+        else
+          keywordRegExp = new RegExp(keywordParts[0], keywordParts[1]);
+
+        var regExpResult = t.search(keywordRegExp);
+        if (regExpResult != -1) {
           element.style.display = 'none';
           console.log("Filtered: " + t);
         }
